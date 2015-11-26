@@ -1,0 +1,67 @@
+-- Create table
+create table ASEG.PGLOGDETAIL
+(
+  mastersn   VARCHAR2(36),
+  logkind    VARCHAR2(10),
+  classname  VARCHAR2(100),
+  methodname VARCHAR2(100),
+  logmsg     LONG,
+  initdate   DATE,
+  remark     VARCHAR2(4000),
+  logtype    VARCHAR2(10),
+  logrecord  VARCHAR2(4000)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.PGLOGDETAIL.mastersn
+  is '主檔流水號';
+comment on column ASEG.PGLOGDETAIL.logkind
+  is '記錄種類';
+comment on column ASEG.PGLOGDETAIL.classname
+  is '類別名稱';
+comment on column ASEG.PGLOGDETAIL.methodname
+  is '方法';
+comment on column ASEG.PGLOGDETAIL.logmsg
+  is 'Log記錄';
+comment on column ASEG.PGLOGDETAIL.initdate
+  is '建立時間';
+comment on column ASEG.PGLOGDETAIL.remark
+  is '備註';
+comment on column ASEG.PGLOGDETAIL.logtype
+  is '記錄型態(AP,LOG)';
+comment on column ASEG.PGLOGDETAIL.logrecord
+  is 'Log記錄';
+-- Create/Recreate indexes 
+create index ASEG.LOGDETAIL on ASEG.PGLOGDETAIL (LOGKIND)
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+create index ASEG.LOGDETAIL_INDEX on ASEG.PGLOGDETAIL (MASTERSN)
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.PGLOGDETAIL to WEBHR;
