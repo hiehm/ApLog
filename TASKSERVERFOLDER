@@ -1,0 +1,52 @@
+-- Create table
+create table ASEG.TASKSERVERFOLDER
+(
+  folder   VARCHAR2(50),
+  remark   LONG,
+  initdate DATE,
+  host     VARCHAR2(30) not null,
+  userid   VARCHAR2(20),
+  password VARCHAR2(250),
+  domain   VARCHAR2(50)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.TASKSERVERFOLDER.folder
+  is 'TASK資料夾';
+comment on column ASEG.TASKSERVERFOLDER.remark
+  is '備註';
+comment on column ASEG.TASKSERVERFOLDER.initdate
+  is '新增時間';
+comment on column ASEG.TASKSERVERFOLDER.host
+  is '伺服器位置';
+comment on column ASEG.TASKSERVERFOLDER.userid
+  is '帳號';
+comment on column ASEG.TASKSERVERFOLDER.password
+  is '密碼';
+comment on column ASEG.TASKSERVERFOLDER.domain
+  is 'DOMAIN';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.TASKSERVERFOLDER
+  add constraint TASKSERVERFOLDER_PK primary key (HOST)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.TASKSERVERFOLDER to WEBHR;
