@@ -1,0 +1,50 @@
+-- Create table
+create table ASEG.TASKSERVERINFODETAIL
+(
+  apid     VARCHAR2(10),
+  kind     VARCHAR2(10),
+  content  LONG,
+  sdate    DATE,
+  edate    DATE,
+  initdate DATE
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table ASEG.TASKSERVERINFODETAIL
+  is 'TASKSERVER執行時間資料';
+-- Add comments to the columns 
+comment on column ASEG.TASKSERVERINFODETAIL.apid
+  is 'APID編號';
+comment on column ASEG.TASKSERVERINFODETAIL.kind
+  is '執行狀態';
+comment on column ASEG.TASKSERVERINFODETAIL.content
+  is '執行方式';
+comment on column ASEG.TASKSERVERINFODETAIL.sdate
+  is '開始時間';
+comment on column ASEG.TASKSERVERINFODETAIL.edate
+  is '結束時間';
+comment on column ASEG.TASKSERVERINFODETAIL.initdate
+  is '資料更新時間';
+-- Create/Recreate indexes 
+create index ASEG.TASKSERVERINFODETAIL_INDEX on ASEG.TASKSERVERINFODETAIL (APID)
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.TASKSERVERINFODETAIL to WEBHR;
