@@ -1,0 +1,64 @@
+-- Create table
+create table ASEG.LOGMAILFROM
+(
+  apid        VARCHAR2(10) not null,
+  mailid      VARCHAR2(36),
+  fromname    VARCHAR2(50),
+  fromaddress VARCHAR2(40),
+  subject     VARCHAR2(100),
+  inituser    VARCHAR2(10),
+  initdate    DATE,
+  edituser    VARCHAR2(10),
+  editdate    DATE,
+  remark      VARCHAR2(100),
+  fileid      VARCHAR2(36)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.LOGMAILFROM.apid
+  is 'Task名稱';
+comment on column ASEG.LOGMAILFROM.mailid
+  is 'MAIL Key (SERVERINFO)';
+comment on column ASEG.LOGMAILFROM.fromname
+  is '寄件者名稱';
+comment on column ASEG.LOGMAILFROM.fromaddress
+  is '寄件者信箱';
+comment on column ASEG.LOGMAILFROM.subject
+  is '主旨';
+comment on column ASEG.LOGMAILFROM.inituser
+  is '創建者';
+comment on column ASEG.LOGMAILFROM.initdate
+  is '創建日期';
+comment on column ASEG.LOGMAILFROM.edituser
+  is '編輯者';
+comment on column ASEG.LOGMAILFROM.editdate
+  is '編輯日期';
+comment on column ASEG.LOGMAILFROM.remark
+  is '備註';
+comment on column ASEG.LOGMAILFROM.fileid
+  is 'FILE Key(SERVERINFO)';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.LOGMAILFROM
+  add constraint APID primary key (APID)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.LOGMAILFROM to WEBHR;
