@@ -1,0 +1,88 @@
+-- Create table
+create table ASEG.TASKSERVERINFO
+(
+  taskserver   VARCHAR2(150),
+  taskname     VARCHAR2(150),
+  domain       VARCHAR2(150),
+  userid       VARCHAR2(100),
+  password     VARCHAR2(250),
+  remark       LONG,
+  ismonitor    VARCHAR2(1),
+  initdate     DATE,
+  inituser     VARCHAR2(20),
+  apname       VARCHAR2(200),
+  apid         VARCHAR2(10) not null,
+  path         VARCHAR2(250),
+  aptype       VARCHAR2(10),
+  mail         VARCHAR2(2),
+  taskargument VARCHAR2(250),
+  apargument   VARCHAR2(250),
+  folder       VARCHAR2(50),
+  oldday       NUMBER,
+  taskkind     VARCHAR2(50)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.TASKSERVERINFO.taskserver
+  is '伺服器名稱';
+comment on column ASEG.TASKSERVERINFO.taskname
+  is 'TASK名稱';
+comment on column ASEG.TASKSERVERINFO.domain
+  is '網域名稱';
+comment on column ASEG.TASKSERVERINFO.userid
+  is '權限使用者';
+comment on column ASEG.TASKSERVERINFO.password
+  is '權限使用者密碼';
+comment on column ASEG.TASKSERVERINFO.remark
+  is '備註';
+comment on column ASEG.TASKSERVERINFO.ismonitor
+  is '是否加入監控';
+comment on column ASEG.TASKSERVERINFO.initdate
+  is '建立時間';
+comment on column ASEG.TASKSERVERINFO.inituser
+  is '建立人員';
+comment on column ASEG.TASKSERVERINFO.apname
+  is '應用程式名稱';
+comment on column ASEG.TASKSERVERINFO.apid
+  is 'AP應用程式編號';
+comment on column ASEG.TASKSERVERINFO.path
+  is '程式路徑';
+comment on column ASEG.TASKSERVERINFO.aptype
+  is '程式型態';
+comment on column ASEG.TASKSERVERINFO.mail
+  is '確認是否發送MAIL';
+comment on column ASEG.TASKSERVERINFO.taskargument
+  is 'JOB設定參數';
+comment on column ASEG.TASKSERVERINFO.apargument
+  is '應用程式參數';
+comment on column ASEG.TASKSERVERINFO.folder
+  is '設定目錄';
+comment on column ASEG.TASKSERVERINFO.oldday
+  is '保留檔案天數';
+comment on column ASEG.TASKSERVERINFO.taskkind
+  is '分類';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.TASKSERVERINFO
+  add constraint TASKID primary key (APID)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.TASKSERVERINFO to WEBHR;
