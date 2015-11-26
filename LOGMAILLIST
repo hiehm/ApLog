@@ -1,0 +1,55 @@
+-- Create table
+create table ASEG.LOGMAILLIST
+(
+  apid      VARCHAR2(10) not null,
+  mail      VARCHAR2(40) not null,
+  empno     VARCHAR2(8),
+  empcname  VARCHAR2(20),
+  deptid    VARCHAR2(4),
+  toaddress VARCHAR2(1),
+  tobcc     VARCHAR2(1),
+  tocc      VARCHAR2(1),
+  admin     VARCHAR2(1),
+  error     VARCHAR2(1)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.LOGMAILLIST.apid
+  is '應用程式編號';
+comment on column ASEG.LOGMAILLIST.mail
+  is 'EMAIL';
+comment on column ASEG.LOGMAILLIST.empno
+  is '工號';
+comment on column ASEG.LOGMAILLIST.empcname
+  is '姓名';
+comment on column ASEG.LOGMAILLIST.deptid
+  is '部門代號';
+comment on column ASEG.LOGMAILLIST.tobcc
+  is '密件';
+comment on column ASEG.LOGMAILLIST.tocc
+  is '附件';
+comment on column ASEG.LOGMAILLIST.error
+  is '例外發送';
+-- Create/Recreate indexes 
+create index ASEG.LOGMAILLIST_INDEX on ASEG.LOGMAILLIST (APID)
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.LOGMAILLIST to WEBHR;
