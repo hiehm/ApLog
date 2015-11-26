@@ -1,0 +1,55 @@
+-- Create table
+create table ASEG.NEWWEBREPORTCALLER
+(
+  slug     VARCHAR2(1000) not null,
+  url      VARCHAR2(500) not null,
+  apid     VARCHAR2(500) not null,
+  remark   VARCHAR2(4000),
+  initdate DATE not null,
+  extype   VARCHAR2(100) not null,
+  exsecond NUMBER not null,
+  sn       VARCHAR2(36) not null
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.NEWWEBREPORTCALLER.slug
+  is '網頁檔名';
+comment on column ASEG.NEWWEBREPORTCALLER.url
+  is '網址';
+comment on column ASEG.NEWWEBREPORTCALLER.apid
+  is 'APID';
+comment on column ASEG.NEWWEBREPORTCALLER.remark
+  is '備註';
+comment on column ASEG.NEWWEBREPORTCALLER.initdate
+  is '修改時間';
+comment on column ASEG.NEWWEBREPORTCALLER.extype
+  is '執行方式 ';
+comment on column ASEG.NEWWEBREPORTCALLER.exsecond
+  is '執行亳秒';
+comment on column ASEG.NEWWEBREPORTCALLER.sn
+  is 'KEY';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.NEWWEBREPORTCALLER
+  add constraint WEBREPORTCALLERKEY primary key (SN)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete, references, alter, index on ASEG.NEWWEBREPORTCALLER to WEBHR;
