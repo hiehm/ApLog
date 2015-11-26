@@ -1,0 +1,43 @@
+-- Create table
+create table ASEG.LOGTYPE
+(
+  logtype     VARCHAR2(10),
+  logtypename VARCHAR2(10),
+  sn          INTEGER not null
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table ASEG.LOGTYPE
+  is 'LOG種類';
+-- Add comments to the columns 
+comment on column ASEG.LOGTYPE.logtype
+  is 'LOG類別';
+comment on column ASEG.LOGTYPE.logtypename
+  is 'LOG名稱';
+comment on column ASEG.LOGTYPE.sn
+  is '流水號';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.LOGTYPE
+  add constraint LOGTYPE_PK primary key (SN)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.LOGTYPE to WEBHR;
