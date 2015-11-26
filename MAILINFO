@@ -1,0 +1,46 @@
+-- Create table
+create table ASEG.MAILINFO
+(
+  host     VARCHAR2(50) not null,
+  port     NUMBER not null,
+  path     VARCHAR2(100),
+  initdate DATE
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table ASEG.MAILINFO
+  is '檔案存放資訊';
+-- Add comments to the columns 
+comment on column ASEG.MAILINFO.host
+  is '主機位置';
+comment on column ASEG.MAILINFO.port
+  is 'PORT';
+comment on column ASEG.MAILINFO.path
+  is '檔案路徑';
+comment on column ASEG.MAILINFO.initdate
+  is '建立時間';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.MAILINFO
+  add constraint MAILINFO_PK primary key (HOST, PORT)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.MAILINFO to WEBHR;
