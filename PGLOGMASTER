@@ -1,0 +1,64 @@
+-- Create table
+create table ASEG.PGLOGMASTER
+(
+  sn           VARCHAR2(36) not null,
+  apid         VARCHAR2(100),
+  apname       VARCHAR2(100),
+  activityid   VARCHAR2(36),
+  taskserverid VARCHAR2(100),
+  startdate    DATE,
+  enddate      DATE,
+  remark       LONG,
+  isreport     VARCHAR2(1),
+  initdate     DATE,
+  mail         VARCHAR2(2)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.PGLOGMASTER.sn
+  is '流水號 GuidID';
+comment on column ASEG.PGLOGMASTER.apid
+  is 'Task名稱';
+comment on column ASEG.PGLOGMASTER.apname
+  is 'Ap名稱';
+comment on column ASEG.PGLOGMASTER.activityid
+  is 'Run Task ActivityId';
+comment on column ASEG.PGLOGMASTER.taskserverid
+  is 'SERVERID';
+comment on column ASEG.PGLOGMASTER.startdate
+  is '程式?動時間';
+comment on column ASEG.PGLOGMASTER.enddate
+  is '程式結束時間';
+comment on column ASEG.PGLOGMASTER.remark
+  is '備註';
+comment on column ASEG.PGLOGMASTER.isreport
+  is '是否回報(Task監控)';
+comment on column ASEG.PGLOGMASTER.initdate
+  is '建立時間';
+comment on column ASEG.PGLOGMASTER.mail
+  is 'MAIL發送';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.PGLOGMASTER
+  add constraint PGLOGMASTER_KEY primary key (SN)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.PGLOGMASTER to WEBHR;
