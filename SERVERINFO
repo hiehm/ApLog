@@ -1,0 +1,49 @@
+-- Create table
+create table ASEG.SERVERINFO
+(
+  sn   VARCHAR2(36) not null,
+  type VARCHAR2(1),
+  kind VARCHAR2(1),
+  host VARCHAR2(20),
+  port VARCHAR2(20),
+  name VARCHAR2(100)
+)
+tablespace HR
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column ASEG.SERVERINFO.sn
+  is '流水號';
+comment on column ASEG.SERVERINFO.type
+  is '種類(M:Mail,F:File)';
+comment on column ASEG.SERVERINFO.kind
+  is '環境分類(P:正式,T:測試)';
+comment on column ASEG.SERVERINFO.host
+  is 'IP';
+comment on column ASEG.SERVERINFO.port
+  is 'PORT';
+comment on column ASEG.SERVERINFO.name
+  is 'IP+PORT';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ASEG.SERVERINFO
+  add constraint SNS primary key (SN)
+  using index 
+  tablespace HR
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Grant/Revoke object privileges 
+grant select, insert, update, delete on ASEG.SERVERINFO to WEBHR;
